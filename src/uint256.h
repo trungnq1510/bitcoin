@@ -1,10 +1,10 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2019 The Bitcoin Core developers
+// Copyright (c) 2009-2019 The Bitnamicoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_UINT256_H
-#define BITCOIN_UINT256_H
+#ifndef BITNAMICOIN_UINT256_H
+#define BITNAMICOIN_UINT256_H
 
 #include <assert.h>
 #include <cstring>
@@ -149,4 +149,4 @@ inline uint256 uint256S(const std::string& str)
 
 uint256& UINT256_ONE();
 
-#endif // BITCOIN_UINT256_H
+#endif // BITNAMICOIN_UINT256_H

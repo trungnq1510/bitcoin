@@ -1,4 +1,4 @@
-# Copyright (c) 2013-2016 The Bitcoin Core developers
+# Copyright (c) 2013-2016 The Bitnamicoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -20,43 +20,43 @@ else
 LIBUNIVALUE = $(UNIVALUE_LIBS)
 endif
 
-BITCOIN_INCLUDES=-I$(builddir) $(BDB_CPPFLAGS) $(BOOST_CPPFLAGS) $(LEVELDB_CPPFLAGS)
+BITNAMICOIN_INCLUDES=-I$(builddir) $(BDB_CPPFLAGS) $(BOOST_CPPFLAGS) $(LEVELDB_CPPFLAGS)
 
-BITCOIN_INCLUDES += -I$(srcdir)/secp256k1/include
-BITCOIN_INCLUDES += $(UNIVALUE_CFLAGS)
+BITNAMICOIN_INCLUDES += -I$(srcdir)/secp256k1/include
+BITNAMICOIN_INCLUDES += $(UNIVALUE_CFLAGS)
 
-LIBBITCOIN_SERVER=libbitcoin_server.a
-LIBBITCOIN_COMMON=libbitcoin_common.a
-LIBBITCOIN_CONSENSUS=libbitcoin_consensus.a
-LIBBITCOIN_CLI=libbitcoin_cli.a
-LIBBITCOIN_UTIL=libbitcoin_util.a
-LIBBITCOIN_CRYPTO_BASE=crypto/libbitcoin_crypto_base.a
-LIBBITCOINQT=qt/libbitcoinqt.a
+LIBBITNAMICOIN_SERVER=libbitnamicoin_server.a
+LIBBITNAMICOIN_COMMON=libbitnamicoin_common.a
+LIBBITNAMICOIN_CONSENSUS=libbitnamicoin_consensus.a
+LIBBITNAMICOIN_CLI=libbitnamicoin_cli.a
+LIBBITNAMICOIN_UTIL=libbitnamicoin_util.a
+LIBBITNAMICOIN_CRYPTO_BASE=crypto/libbitnamicoin_crypto_base.a
+LIBBITNAMICOINQT=qt/libbitnamicoinqt.a
 LIBSECP256K1=secp256k1/libsecp256k1.la
 
 if ENABLE_ZMQ
-LIBBITCOIN_ZMQ=libbitcoin_zmq.a
+LIBBITNAMICOIN_ZMQ=libbitnamicoin_zmq.a
 endif
-if BUILD_BITCOIN_LIBS
-LIBBITCOINCONSENSUS=libbitcoinconsensus.la
+if BUILD_BITNAMICOIN_LIBS
+LIBBITNAMICOINCONSENSUS=libbitnamicoinconsensus.la
 endif
 if ENABLE_WALLET
-LIBBITCOIN_WALLET=libbitcoin_wallet.a
-LIBBITCOIN_WALLET_TOOL=libbitcoin_wallet_tool.a
+LIBBITNAMICOIN_WALLET=libbitnamicoin_wallet.a
+LIBBITNAMICOIN_WALLET_TOOL=libbitnamicoin_wallet_tool.a
 endif
 
-LIBBITCOIN_CRYPTO= $(LIBBITCOIN_CRYPTO_BASE)
+LIBBITNAMICOIN_CRYPTO= $(LIBBITNAMICOIN_CRYPTO_BASE)
 if ENABLE_SSE41
-LIBBITCOIN_CRYPTO_SSE41 = crypto/libbitcoin_crypto_sse41.a
-LIBBITCOIN_CRYPTO += $(LIBBITCOIN_CRYPTO_SSE41)
+LIBBITNAMICOIN_CRYPTO_SSE41 = crypto/libbitnamicoin_crypto_sse41.a
+LIBBITNAMICOIN_CRYPTO += $(LIBBITNAMICOIN_CRYPTO_SSE41)
 endif
 if ENABLE_AVX2
-LIBBITCOIN_CRYPTO_AVX2 = crypto/libbitcoin_crypto_avx2.a
-LIBBITCOIN_CRYPTO += $(LIBBITCOIN_CRYPTO_AVX2)
+LIBBITNAMICOIN_CRYPTO_AVX2 = crypto/libbitnamicoin_crypto_avx2.a
+LIBBITNAMICOIN_CRYPTO += $(LIBBITNAMICOIN_CRYPTO_AVX2)
 endif
 if ENABLE_SHANI
-LIBBITCOIN_CRYPTO_SHANI = crypto/libbitcoin_crypto_shani.a
-LIBBITCOIN_CRYPTO += $(LIBBITCOIN_CRYPTO_SHANI)
+LIBBITNAMICOIN_CRYPTO_SHANI = crypto/libbitnamicoin_crypto_shani.a
+LIBBITNAMICOIN_CRYPTO += $(LIBBITNAMICOIN_CRYPTO_SHANI)
 endif
 
 $(LIBSECP256K1): $(wildcard secp256k1/src/*.h) $(wildcard secp256k1/src/*.c) $(wildcard secp256k1/include/*)
@@ -65,46 +65,46 @@ $(LIBSECP256K1): $(wildcard secp256k1/src/*.h) $(wildcard secp256k1/src/*.c) $(w
 # Make is not made aware of per-object dependencies to avoid limiting building parallelization
 # But to build the less dependent modules first, we manually select their order here:
 EXTRA_LIBRARIES += \
-  $(LIBBITCOIN_CRYPTO) \
-  $(LIBBITCOIN_UTIL) \
-  $(LIBBITCOIN_COMMON) \
-  $(LIBBITCOIN_CONSENSUS) \
-  $(LIBBITCOIN_SERVER) \
-  $(LIBBITCOIN_CLI) \
-  $(LIBBITCOIN_WALLET) \
-  $(LIBBITCOIN_WALLET_TOOL) \
-  $(LIBBITCOIN_ZMQ)
+  $(LIBBITNAMICOIN_CRYPTO) \
+  $(LIBBITNAMICOIN_UTIL) \
+  $(LIBBITNAMICOIN_COMMON) \
+  $(LIBBITNAMICOIN_CONSENSUS) \
+  $(LIBBITNAMICOIN_SERVER) \
+  $(LIBBITNAMICOIN_CLI) \
+  $(LIBBITNAMICOIN_WALLET) \
+  $(LIBBITNAMICOIN_WALLET_TOOL) \
+  $(LIBBITNAMICOIN_ZMQ)
 
-lib_LTLIBRARIES = $(LIBBITCOINCONSENSUS)
+lib_LTLIBRARIES = $(LIBBITNAMICOINCONSENSUS)
 
 bin_PROGRAMS =
 noinst_PROGRAMS =
 TESTS =
 BENCHMARKS =
 
-if BUILD_BITCOIND
-  bin_PROGRAMS += bitcoind
+if BUILD_BITNAMICOIND
+  bin_PROGRAMS += bitnamicoind
 endif
 
-if BUILD_BITCOIN_NODE
-  bin_PROGRAMS += bitcoin-node
+if BUILD_BITNAMICOIN_NODE
+  bin_PROGRAMS += bitnamicoin-node
 endif
 
-if BUILD_BITCOIN_CLI
-  bin_PROGRAMS += bitcoin-cli
+if BUILD_BITNAMICOIN_CLI
+  bin_PROGRAMS += bitnamicoin-cli
 endif
-if BUILD_BITCOIN_TX
-  bin_PROGRAMS += bitcoin-tx
+if BUILD_BITNAMICOIN_TX
+  bin_PROGRAMS += bitnamicoin-tx
 endif
 if ENABLE_WALLET
-if BUILD_BITCOIN_WALLET
-  bin_PROGRAMS += bitcoin-wallet
+if BUILD_BITNAMICOIN_WALLET
+  bin_PROGRAMS += bitnamicoin-wallet
 endif
 endif
 
 .PHONY: FORCE check-symbols check-security
-# bitcoin core #
-BITCOIN_CORE_H = \
+# bitnamicoin core #
+BITNAMICOIN_CORE_H = \
   addrdb.h \
   addrman.h \
   attributes.h \
@@ -273,15 +273,15 @@ obj/build.h: FORCE
 	@$(MKDIR_P) $(builddir)/obj
 	@$(top_srcdir)/share/genbuild.sh "$(abs_top_builddir)/src/obj/build.h" \
 	  "$(abs_top_srcdir)"
-libbitcoin_util_a-clientversion.$(OBJEXT): obj/build.h
+libbitnamicoin_util_a-clientversion.$(OBJEXT): obj/build.h
 
-# server: shared between bitcoind and bitcoin-qt
+# server: shared between bitnamicoind and bitnamicoin-qt
 # Contains code accessing mempool and chain state that is meant to be separated
 # from wallet and gui code (see node/README.md). Shared code should go in
-# libbitcoin_common or libbitcoin_util libraries, instead.
-libbitcoin_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
-libbitcoin_server_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libbitcoin_server_a_SOURCES = \
+# libbitnamicoin_common or libbitnamicoin_util libraries, instead.
+libbitnamicoin_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITNAMICOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
+libbitnamicoin_server_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libbitnamicoin_server_a_SOURCES = \
   addrdb.cpp \
   addrman.cpp \
   banman.cpp \
@@ -329,19 +329,19 @@ libbitcoin_server_a_SOURCES = \
   validation.cpp \
   validationinterface.cpp \
   versionbits.cpp \
-  $(BITCOIN_CORE_H)
+  $(BITNAMICOIN_CORE_H)
 
 if ENABLE_WALLET
-libbitcoin_server_a_SOURCES += wallet/init.cpp
+libbitnamicoin_server_a_SOURCES += wallet/init.cpp
 endif
 if !ENABLE_WALLET
-libbitcoin_server_a_SOURCES += dummywallet.cpp
+libbitnamicoin_server_a_SOURCES += dummywallet.cpp
 endif
 
 if ENABLE_ZMQ
-libbitcoin_zmq_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(ZMQ_CFLAGS)
-libbitcoin_zmq_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libbitcoin_zmq_a_SOURCES = \
+libbitnamicoin_zmq_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITNAMICOIN_INCLUDES) $(ZMQ_CFLAGS)
+libbitnamicoin_zmq_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libbitnamicoin_zmq_a_SOURCES = \
   zmq/zmqabstractnotifier.cpp \
   zmq/zmqnotificationinterface.cpp \
   zmq/zmqpublishnotifier.cpp \
@@ -349,11 +349,11 @@ libbitcoin_zmq_a_SOURCES = \
 endif
 
 
-# wallet: shared between bitcoind and bitcoin-qt, but only linked
+# wallet: shared between bitnamicoind and bitnamicoin-qt, but only linked
 # when wallet enabled
-libbitcoin_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-libbitcoin_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libbitcoin_wallet_a_SOURCES = \
+libbitnamicoin_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITNAMICOIN_INCLUDES)
+libbitnamicoin_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libbitnamicoin_wallet_a_SOURCES = \
   interfaces/wallet.cpp \
   wallet/bdb.cpp \
   wallet/coincontrol.cpp \
@@ -371,18 +371,18 @@ libbitcoin_wallet_a_SOURCES = \
   wallet/walletdb.cpp \
   wallet/walletutil.cpp \
   wallet/coinselection.cpp \
-  $(BITCOIN_CORE_H)
+  $(BITNAMICOIN_CORE_H)
 
-libbitcoin_wallet_tool_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-libbitcoin_wallet_tool_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libbitcoin_wallet_tool_a_SOURCES = \
+libbitnamicoin_wallet_tool_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITNAMICOIN_INCLUDES)
+libbitnamicoin_wallet_tool_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libbitnamicoin_wallet_tool_a_SOURCES = \
   wallet/wallettool.cpp \
-  $(BITCOIN_CORE_H)
+  $(BITNAMICOIN_CORE_H)
 
 # crypto primitives library
-crypto_libbitcoin_crypto_base_a_CPPFLAGS = $(AM_CPPFLAGS)
-crypto_libbitcoin_crypto_base_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-crypto_libbitcoin_crypto_base_a_SOURCES = \
+crypto_libbitnamicoin_crypto_base_a_CPPFLAGS = $(AM_CPPFLAGS)
+crypto_libbitnamicoin_crypto_base_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+crypto_libbitnamicoin_crypto_base_a_SOURCES = \
   crypto/aes.cpp \
   crypto/aes.h \
   crypto/chacha_poly_aead.h \
@@ -412,31 +412,31 @@ crypto_libbitcoin_crypto_base_a_SOURCES = \
   crypto/siphash.h
 
 if USE_ASM
-crypto_libbitcoin_crypto_base_a_SOURCES += crypto/sha256_sse4.cpp
+crypto_libbitnamicoin_crypto_base_a_SOURCES += crypto/sha256_sse4.cpp
 endif
 
-crypto_libbitcoin_crypto_sse41_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-crypto_libbitcoin_crypto_sse41_a_CPPFLAGS = $(AM_CPPFLAGS)
-crypto_libbitcoin_crypto_sse41_a_CXXFLAGS += $(SSE41_CXXFLAGS)
-crypto_libbitcoin_crypto_sse41_a_CPPFLAGS += -DENABLE_SSE41
-crypto_libbitcoin_crypto_sse41_a_SOURCES = crypto/sha256_sse41.cpp
+crypto_libbitnamicoin_crypto_sse41_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+crypto_libbitnamicoin_crypto_sse41_a_CPPFLAGS = $(AM_CPPFLAGS)
+crypto_libbitnamicoin_crypto_sse41_a_CXXFLAGS += $(SSE41_CXXFLAGS)
+crypto_libbitnamicoin_crypto_sse41_a_CPPFLAGS += -DENABLE_SSE41
+crypto_libbitnamicoin_crypto_sse41_a_SOURCES = crypto/sha256_sse41.cpp
 
-crypto_libbitcoin_crypto_avx2_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-crypto_libbitcoin_crypto_avx2_a_CPPFLAGS = $(AM_CPPFLAGS)
-crypto_libbitcoin_crypto_avx2_a_CXXFLAGS += $(AVX2_CXXFLAGS)
-crypto_libbitcoin_crypto_avx2_a_CPPFLAGS += -DENABLE_AVX2
-crypto_libbitcoin_crypto_avx2_a_SOURCES = crypto/sha256_avx2.cpp
+crypto_libbitnamicoin_crypto_avx2_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+crypto_libbitnamicoin_crypto_avx2_a_CPPFLAGS = $(AM_CPPFLAGS)
+crypto_libbitnamicoin_crypto_avx2_a_CXXFLAGS += $(AVX2_CXXFLAGS)
+crypto_libbitnamicoin_crypto_avx2_a_CPPFLAGS += -DENABLE_AVX2
+crypto_libbitnamicoin_crypto_avx2_a_SOURCES = crypto/sha256_avx2.cpp
 
-crypto_libbitcoin_crypto_shani_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-crypto_libbitcoin_crypto_shani_a_CPPFLAGS = $(AM_CPPFLAGS)
-crypto_libbitcoin_crypto_shani_a_CXXFLAGS += $(SHANI_CXXFLAGS)
-crypto_libbitcoin_crypto_shani_a_CPPFLAGS += -DENABLE_SHANI
-crypto_libbitcoin_crypto_shani_a_SOURCES = crypto/sha256_shani.cpp
+crypto_libbitnamicoin_crypto_shani_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+crypto_libbitnamicoin_crypto_shani_a_CPPFLAGS = $(AM_CPPFLAGS)
+crypto_libbitnamicoin_crypto_shani_a_CXXFLAGS += $(SHANI_CXXFLAGS)
+crypto_libbitnamicoin_crypto_shani_a_CPPFLAGS += -DENABLE_SHANI
+crypto_libbitnamicoin_crypto_shani_a_SOURCES = crypto/sha256_shani.cpp
 
 # consensus: shared between all executables that validate any consensus rules.
-libbitcoin_consensus_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-libbitcoin_consensus_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libbitcoin_consensus_a_SOURCES = \
+libbitnamicoin_consensus_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITNAMICOIN_INCLUDES)
+libbitnamicoin_consensus_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libbitnamicoin_consensus_a_SOURCES = \
   amount.h \
   arith_uint256.cpp \
   arith_uint256.h \
@@ -454,7 +454,7 @@ libbitcoin_consensus_a_SOURCES = \
   primitives/transaction.h \
   pubkey.cpp \
   pubkey.h \
-  script/bitcoinconsensus.cpp \
+  script/bitnamicoinconsensus.cpp \
   script/interpreter.cpp \
   script/interpreter.h \
   script/script.cpp \
@@ -470,10 +470,10 @@ libbitcoin_consensus_a_SOURCES = \
   util/strencodings.h \
   version.h
 
-# common: shared between bitcoind, and bitcoin-qt and non-server tools
-libbitcoin_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-libbitcoin_common_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libbitcoin_common_a_SOURCES = \
+# common: shared between bitnamicoind, and bitnamicoin-qt and non-server tools
+libbitnamicoin_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITNAMICOIN_INCLUDES)
+libbitnamicoin_common_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libbitnamicoin_common_a_SOURCES = \
   base58.cpp \
   bech32.cpp \
   bloom.cpp \
@@ -502,14 +502,14 @@ libbitcoin_common_a_SOURCES = \
   script/standard.cpp \
   versionbitsinfo.cpp \
   warnings.cpp \
-  $(BITCOIN_CORE_H)
+  $(BITNAMICOIN_CORE_H)
 
 # util: shared between all executables.
 # This library *must* be included to make sure that the glibc
 # backward-compatibility objects and their sanity checks are linked.
-libbitcoin_util_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-libbitcoin_util_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libbitcoin_util_a_SOURCES = \
+libbitnamicoin_util_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITNAMICOIN_INCLUDES)
+libbitnamicoin_util_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libbitnamicoin_util_a_SOURCES = \
   support/lockedpool.cpp \
   chainparamsbase.cpp \
   clientversion.cpp \
@@ -540,131 +540,131 @@ libbitcoin_util_a_SOURCES = \
   util/strencodings.cpp \
   util/string.cpp \
   util/time.cpp \
-  $(BITCOIN_CORE_H)
+  $(BITNAMICOIN_CORE_H)
 
 if USE_LIBEVENT
-libbitcoin_util_a_SOURCES += util/url.cpp
+libbitnamicoin_util_a_SOURCES += util/url.cpp
 endif
 
 if GLIBC_BACK_COMPAT
-libbitcoin_util_a_SOURCES += compat/glibc_compat.cpp
+libbitnamicoin_util_a_SOURCES += compat/glibc_compat.cpp
 AM_LDFLAGS += $(COMPAT_LDFLAGS)
 endif
 
-# cli: shared between bitcoin-cli and bitcoin-qt
-libbitcoin_cli_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-libbitcoin_cli_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libbitcoin_cli_a_SOURCES = \
+# cli: shared between bitnamicoin-cli and bitnamicoin-qt
+libbitnamicoin_cli_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITNAMICOIN_INCLUDES)
+libbitnamicoin_cli_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libbitnamicoin_cli_a_SOURCES = \
   compat/stdin.h \
   compat/stdin.cpp \
   rpc/client.cpp \
-  $(BITCOIN_CORE_H)
+  $(BITNAMICOIN_CORE_H)
 
-nodist_libbitcoin_util_a_SOURCES = $(srcdir)/obj/build.h
+nodist_libbitnamicoin_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
-# bitcoind & bitcoin-node binaries #
-bitcoin_daemon_sources = bitcoind.cpp
-bitcoin_bin_cppflags = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-bitcoin_bin_cxxflags = $(AM_CXXFLAGS) $(PIE_FLAGS)
-bitcoin_bin_ldflags = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS)
+# bitnamicoind & bitnamicoin-node binaries #
+bitnamicoin_daemon_sources = bitnamicoind.cpp
+bitnamicoin_bin_cppflags = $(AM_CPPFLAGS) $(BITNAMICOIN_INCLUDES)
+bitnamicoin_bin_cxxflags = $(AM_CXXFLAGS) $(PIE_FLAGS)
+bitnamicoin_bin_ldflags = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS)
 
 if TARGET_WINDOWS
-bitcoin_daemon_sources += bitcoind-res.rc
+bitnamicoin_daemon_sources += bitnamicoind-res.rc
 endif
 
-bitcoin_bin_ldadd = \
-  $(LIBBITCOIN_WALLET) \
-  $(LIBBITCOIN_COMMON) \
-  $(LIBBITCOIN_UTIL) \
+bitnamicoin_bin_ldadd = \
+  $(LIBBITNAMICOIN_WALLET) \
+  $(LIBBITNAMICOIN_COMMON) \
+  $(LIBBITNAMICOIN_UTIL) \
   $(LIBUNIVALUE) \
-  $(LIBBITCOIN_ZMQ) \
-  $(LIBBITCOIN_CONSENSUS) \
-  $(LIBBITCOIN_CRYPTO) \
+  $(LIBBITNAMICOIN_ZMQ) \
+  $(LIBBITNAMICOIN_CONSENSUS) \
+  $(LIBBITNAMICOIN_CRYPTO) \
   $(LIBLEVELDB) \
   $(LIBLEVELDB_SSE42) \
   $(LIBMEMENV) \
   $(LIBSECP256K1)
 
-bitcoin_bin_ldadd += $(BOOST_LIBS) $(BDB_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
+bitnamicoin_bin_ldadd += $(BOOST_LIBS) $(BDB_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
 
-bitcoind_SOURCES = $(bitcoin_daemon_sources)
-bitcoind_CPPFLAGS = $(bitcoin_bin_cppflags)
-bitcoind_CXXFLAGS = $(bitcoin_bin_cxxflags)
-bitcoind_LDFLAGS = $(bitcoin_bin_ldflags)
-bitcoind_LDADD = $(LIBBITCOIN_SERVER) $(bitcoin_bin_ldadd)
+bitnamicoind_SOURCES = $(bitnamicoin_daemon_sources)
+bitnamicoind_CPPFLAGS = $(bitnamicoin_bin_cppflags)
+bitnamicoind_CXXFLAGS = $(bitnamicoin_bin_cxxflags)
+bitnamicoind_LDFLAGS = $(bitnamicoin_bin_ldflags)
+bitnamicoind_LDADD = $(LIBBITNAMICOIN_SERVER) $(bitnamicoin_bin_ldadd)
 
-bitcoin_node_SOURCES = $(bitcoin_daemon_sources)
-bitcoin_node_CPPFLAGS = $(bitcoin_bin_cppflags)
-bitcoin_node_CXXFLAGS = $(bitcoin_bin_cxxflags)
-bitcoin_node_LDFLAGS = $(bitcoin_bin_ldflags)
-bitcoin_node_LDADD = $(LIBBITCOIN_SERVER) $(bitcoin_bin_ldadd)
+bitnamicoin_node_SOURCES = $(bitnamicoin_daemon_sources)
+bitnamicoin_node_CPPFLAGS = $(bitnamicoin_bin_cppflags)
+bitnamicoin_node_CXXFLAGS = $(bitnamicoin_bin_cxxflags)
+bitnamicoin_node_LDFLAGS = $(bitnamicoin_bin_ldflags)
+bitnamicoin_node_LDADD = $(LIBBITNAMICOIN_SERVER) $(bitnamicoin_bin_ldadd)
 
-# bitcoin-cli binary #
-bitcoin_cli_SOURCES = bitcoin-cli.cpp
-bitcoin_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
-bitcoin_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-bitcoin_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS)
+# bitnamicoin-cli binary #
+bitnamicoin_cli_SOURCES = bitnamicoin-cli.cpp
+bitnamicoin_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITNAMICOIN_INCLUDES) $(EVENT_CFLAGS)
+bitnamicoin_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+bitnamicoin_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS)
 
 if TARGET_WINDOWS
-bitcoin_cli_SOURCES += bitcoin-cli-res.rc
+bitnamicoin_cli_SOURCES += bitnamicoin-cli-res.rc
 endif
 
-bitcoin_cli_LDADD = \
-  $(LIBBITCOIN_CLI) \
+bitnamicoin_cli_LDADD = \
+  $(LIBBITNAMICOIN_CLI) \
   $(LIBUNIVALUE) \
-  $(LIBBITCOIN_UTIL) \
-  $(LIBBITCOIN_CRYPTO)
+  $(LIBBITNAMICOIN_UTIL) \
+  $(LIBBITNAMICOIN_CRYPTO)
 
-bitcoin_cli_LDADD += $(BOOST_LIBS) $(EVENT_LIBS)
+bitnamicoin_cli_LDADD += $(BOOST_LIBS) $(EVENT_LIBS)
 #
 
-# bitcoin-tx binary #
-bitcoin_tx_SOURCES = bitcoin-tx.cpp
-bitcoin_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-bitcoin_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-bitcoin_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS)
+# bitnamicoin-tx binary #
+bitnamicoin_tx_SOURCES = bitnamicoin-tx.cpp
+bitnamicoin_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITNAMICOIN_INCLUDES)
+bitnamicoin_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+bitnamicoin_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS)
 
 if TARGET_WINDOWS
-bitcoin_tx_SOURCES += bitcoin-tx-res.rc
+bitnamicoin_tx_SOURCES += bitnamicoin-tx-res.rc
 endif
 
-bitcoin_tx_LDADD = \
+bitnamicoin_tx_LDADD = \
   $(LIBUNIVALUE) \
-  $(LIBBITCOIN_COMMON) \
-  $(LIBBITCOIN_UTIL) \
-  $(LIBBITCOIN_CONSENSUS) \
-  $(LIBBITCOIN_CRYPTO) \
+  $(LIBBITNAMICOIN_COMMON) \
+  $(LIBBITNAMICOIN_UTIL) \
+  $(LIBBITNAMICOIN_CONSENSUS) \
+  $(LIBBITNAMICOIN_CRYPTO) \
   $(LIBSECP256K1)
 
-bitcoin_tx_LDADD += $(BOOST_LIBS)
+bitnamicoin_tx_LDADD += $(BOOST_LIBS)
 #
 
-# bitcoin-wallet binary #
-bitcoin_wallet_SOURCES = bitcoin-wallet.cpp
-bitcoin_wallet_CPPFLAGS = $(bitcoin_bin_cppflags)
-bitcoin_wallet_CXXFLAGS = $(bitcoin_bin_cxxflags)
-bitcoin_wallet_LDFLAGS = $(bitcoin_bin_ldflags)
-bitcoin_wallet_LDADD = $(LIBBITCOIN_WALLET_TOOL) $(bitcoin_bin_ldadd)
+# bitnamicoin-wallet binary #
+bitnamicoin_wallet_SOURCES = bitnamicoin-wallet.cpp
+bitnamicoin_wallet_CPPFLAGS = $(bitnamicoin_bin_cppflags)
+bitnamicoin_wallet_CXXFLAGS = $(bitnamicoin_bin_cxxflags)
+bitnamicoin_wallet_LDFLAGS = $(bitnamicoin_bin_ldflags)
+bitnamicoin_wallet_LDADD = $(LIBBITNAMICOIN_WALLET_TOOL) $(bitnamicoin_bin_ldadd)
 
 if TARGET_WINDOWS
-bitcoin_wallet_SOURCES += bitcoin-wallet-res.rc
+bitnamicoin_wallet_SOURCES += bitnamicoin-wallet-res.rc
 endif
 #
 
-# bitcoinconsensus library #
-if BUILD_BITCOIN_LIBS
-include_HEADERS = script/bitcoinconsensus.h
-libbitcoinconsensus_la_SOURCES = support/cleanse.cpp $(crypto_libbitcoin_crypto_base_a_SOURCES) $(libbitcoin_consensus_a_SOURCES)
+# bitnamicoinconsensus library #
+if BUILD_BITNAMICOIN_LIBS
+include_HEADERS = script/bitnamicoinconsensus.h
+libbitnamicoinconsensus_la_SOURCES = support/cleanse.cpp $(crypto_libbitnamicoin_crypto_base_a_SOURCES) $(libbitnamicoin_consensus_a_SOURCES)
 
 if GLIBC_BACK_COMPAT
-  libbitcoinconsensus_la_SOURCES += compat/glibc_compat.cpp
+  libbitnamicoinconsensus_la_SOURCES += compat/glibc_compat.cpp
 endif
 
-libbitcoinconsensus_la_LDFLAGS = $(AM_LDFLAGS) -no-undefined $(RELDFLAGS)
-libbitcoinconsensus_la_LIBADD = $(LIBSECP256K1)
-libbitcoinconsensus_la_CPPFLAGS = $(AM_CPPFLAGS) -I$(builddir)/obj -I$(srcdir)/secp256k1/include -DBUILD_BITCOIN_INTERNAL
-libbitcoinconsensus_la_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libbitnamicoinconsensus_la_LDFLAGS = $(AM_LDFLAGS) -no-undefined $(RELDFLAGS)
+libbitnamicoinconsensus_la_LIBADD = $(LIBSECP256K1)
+libbitnamicoinconsensus_la_CPPFLAGS = $(AM_CPPFLAGS) -I$(builddir)/obj -I$(srcdir)/secp256k1/include -DBUILD_BITNAMICOIN_INTERNAL
+libbitnamicoinconsensus_la_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 
 endif
 #
@@ -700,12 +700,12 @@ CLEANFILES += obj/build.h
 EXTRA_DIST = $(CTAES_DIST)
 
 
-config/bitcoin-config.h: config/stamp-h1
+config/bitnamicoin-config.h: config/stamp-h1
 	@$(MAKE) -C $(top_builddir) $(subdir)/$(@)
-config/stamp-h1: $(top_srcdir)/$(subdir)/config/bitcoin-config.h.in $(top_builddir)/config.status
+config/stamp-h1: $(top_srcdir)/$(subdir)/config/bitnamicoin-config.h.in $(top_builddir)/config.status
 	$(AM_V_at)$(MAKE) -C $(top_builddir) $(subdir)/$(@)
-$(top_srcdir)/$(subdir)/config/bitcoin-config.h.in:  $(am__configure_deps)
-	$(AM_V_at)$(MAKE) -C $(top_srcdir) $(subdir)/config/bitcoin-config.h.in
+$(top_srcdir)/$(subdir)/config/bitnamicoin-config.h.in:  $(am__configure_deps)
+	$(AM_V_at)$(MAKE) -C $(top_srcdir) $(subdir)/config/bitnamicoin-config.h.in
 
 clean-local:
 	-$(MAKE) -C secp256k1 clean

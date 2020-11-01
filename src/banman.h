@@ -1,9 +1,9 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2020 The Bitcoin Core developers
+// Copyright (c) 2009-2020 The Bitnamicoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
-#ifndef BITCOIN_BANMAN_H
-#define BITCOIN_BANMAN_H
+#ifndef BITNAMICOIN_BANMAN_H
+#define BITNAMICOIN_BANMAN_H
 
 #include <addrdb.h>
 #include <bloom.h>

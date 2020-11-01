@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Copyright (c) 2019-2020 The Bitcoin Core developers
+# Copyright (c) 2019-2020 The Bitnamicoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -14,4 +14,4 @@ export XCODE_BUILD_ID=11C505
 export RUN_UNIT_TESTS=false
 export RUN_FUNCTIONAL_TESTS=false
 export GOAL="deploy"
-export BITCOIN_CONFIG="--with-gui --enable-reduce-exports --enable-werror --with-boost-process"
+export BITNAMICOIN_CONFIG="--with-gui --enable-reduce-exports --enable-werror --with-boost-process"

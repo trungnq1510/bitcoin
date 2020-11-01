@@ -2,9 +2,9 @@ Configuration
 -------------
 
 Wallets created or loaded in the GUI will now be automatically loaded on
-startup, so they don't need to be manually reloaded next time Bitcoin is
+startup, so they don't need to be manually reloaded next time Bitnamicoin is
 started. The list of wallets to load on startup is stored in
-`\<datadir\>/settings.json` and augments any command line or `bitcoin.conf`
+`\<datadir\>/settings.json` and augments any command line or `bitnamicoin.conf`
 `-wallet=` settings that specify more wallets to load. Wallets that are
 unloaded in the GUI get removed from the settings list so they won't load again
 automatically next startup. (#19754)

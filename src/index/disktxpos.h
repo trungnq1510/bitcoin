@@ -1,9 +1,9 @@
-// Copyright (c) 2019 The Bitcoin Core developers
+// Copyright (c) 2019 The Bitnamicoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_INDEX_DISKTXPOS_H
-#define BITCOIN_INDEX_DISKTXPOS_H
+#ifndef BITNAMICOIN_INDEX_DISKTXPOS_H
+#define BITNAMICOIN_INDEX_DISKTXPOS_H
 
 #include <flatfile.h>
 #include <serialize.h>
@@ -32,4 +32,4 @@ struct CDiskTxPos : public FlatFilePos
 };
 
 
-#endif // BITCOIN_INDEX_DISKTXPOS_H
+#endif // BITNAMICOIN_INDEX_DISKTXPOS_H

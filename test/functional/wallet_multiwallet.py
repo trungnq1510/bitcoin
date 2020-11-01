@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-# Copyright (c) 2017-2020 The Bitcoin Core developers
+# Copyright (c) 2017-2020 The Bitnamicoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test multiwallet.
 
-Verify that a bitcoind node can load multiple wallet files
+Verify that a bitnamicoind node can load multiple wallet files
 """
 from decimal import Decimal
 from threading import Thread
@@ -13,7 +13,7 @@ import shutil
 import time
 
 from test_framework.authproxy import JSONRPCException
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BitnamicoinTestFramework
 from test_framework.test_node import ErrorMatch
 from test_framework.util import (
     assert_equal,
@@ -38,7 +38,7 @@ def test_load_unload(node, name):
                 return
 
 
-class MultiWalletTest(BitcoinTestFramework):
+class MultiWalletTest(BitnamicoinTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 2

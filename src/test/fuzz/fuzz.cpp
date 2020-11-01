@@ -1,4 +1,4 @@
-// Copyright (c) 2009-2020 The Bitcoin Core developers
+// Copyright (c) 2009-2020 The Bitnamicoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -15,7 +15,7 @@ const std::function<void(const std::string&)> G_TEST_LOG_FUN{};
 // Decide if main(...) should be provided:
 // * AFL needs main(...) regardless of platform.
 // * macOS handles __attribute__((weak)) main(...) poorly when linking
-//   against libFuzzer. See https://github.com/bitcoin/bitcoin/pull/18008
+//   against libFuzzer. See https://github.com/bitnamicoin/bitnamicoin/pull/18008
 //   for details.
 #if defined(__AFL_COMPILER) || !defined(MAC_OSX)
 #define PROVIDE_MAIN_FUNCTION

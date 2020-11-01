@@ -1,9 +1,9 @@
-// Copyright (c) 2014-2016 The Bitcoin Core developers
+// Copyright (c) 2014-2016 The Bitnamicoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_CRYPTO_RIPEMD160_H
-#define BITCOIN_CRYPTO_RIPEMD160_H
+#ifndef BITNAMICOIN_CRYPTO_RIPEMD160_H
+#define BITNAMICOIN_CRYPTO_RIPEMD160_H
 
 #include <stdint.h>
 #include <stdlib.h>
@@ -25,4 +25,4 @@ public:
     CRIPEMD160& Reset();
 };
 
-#endif // BITCOIN_CRYPTO_RIPEMD160_H
+#endif // BITNAMICOIN_CRYPTO_RIPEMD160_H

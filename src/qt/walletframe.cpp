@@ -1,11 +1,11 @@
-// Copyright (c) 2011-2020 The Bitcoin Core developers
+// Copyright (c) 2011-2020 The Bitnamicoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <qt/walletframe.h>
 #include <qt/walletmodel.h>
 
-#include <qt/bitcoingui.h>
+#include <qt/bitnamicoingui.h>
 #include <qt/walletview.h>
 
 #include <cassert>
@@ -13,7 +13,7 @@
 #include <QHBoxLayout>
 #include <QLabel>
 
-WalletFrame::WalletFrame(const PlatformStyle *_platformStyle, BitcoinGUI *_gui) :
+WalletFrame::WalletFrame(const PlatformStyle *_platformStyle, BitnamicoinGUI *_gui) :
     QFrame(_gui),
     gui(_gui),
     platformStyle(_platformStyle)
@@ -66,15 +66,15 @@ bool WalletFrame::addWallet(WalletModel *walletModel)
     mapWalletViews[walletModel] = walletView;
 
     connect(walletView, &WalletView::outOfSyncWarningClicked, this, &WalletFrame::outOfSyncWarningClicked);
-    connect(walletView, &WalletView::transactionClicked, gui, &BitcoinGUI::gotoHistoryPage);
-    connect(walletView, &WalletView::coinsSent, gui, &BitcoinGUI::gotoHistoryPage);
+    connect(walletView, &WalletView::transactionClicked, gui, &BitnamicoinGUI::gotoHistoryPage);
+    connect(walletView, &WalletView::coinsSent, gui, &BitnamicoinGUI::gotoHistoryPage);
     connect(walletView, &WalletView::message, [this](const QString& title, const QString& message, unsigned int style) {
         gui->message(title, message, style);
     });
-    connect(walletView, &WalletView::encryptionStatusChanged, gui, &BitcoinGUI::updateWalletStatus);
-    connect(walletView, &WalletView::incomingTransaction, gui, &BitcoinGUI::incomingTransaction);
-    connect(walletView, &WalletView::hdEnabledStatusChanged, gui, &BitcoinGUI::updateWalletStatus);
-    connect(gui, &BitcoinGUI::setPrivacy, walletView, &WalletView::setPrivacy);
+    connect(walletView, &WalletView::encryptionStatusChanged, gui, &BitnamicoinGUI::updateWalletStatus);
+    connect(walletView, &WalletView::incomingTransaction, gui, &BitnamicoinGUI::incomingTransaction);
+    connect(walletView, &WalletView::hdEnabledStatusChanged, gui, &BitnamicoinGUI::updateWalletStatus);
+    connect(gui, &BitnamicoinGUI::setPrivacy, walletView, &WalletView::setPrivacy);
 
     return true;
 }

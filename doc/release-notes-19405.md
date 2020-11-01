@@ -7,6 +7,6 @@
 
 ## CLI
 
-- The `connections` field of `bitcoin-cli -getinfo` is expanded to return a JSON
+- The `connections` field of `bitnamicoin-cli -getinfo` is expanded to return a JSON
   object with `in`, `out` and `total` numbers of peer connections. It previously
   returned a single integer value for the total number of peer connections. (#19405)

@@ -1,9 +1,9 @@
-// Copyright (c) 2016-2020 The Bitcoin Core developers
+// Copyright (c) 2016-2020 The Bitnamicoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_WALLET_RPCWALLET_H
-#define BITCOIN_WALLET_RPCWALLET_H
+#ifndef BITNAMICOIN_WALLET_RPCWALLET_H
+#define BITNAMICOIN_WALLET_RPCWALLET_H
 
 #include <span.h>
 
@@ -36,4 +36,4 @@ LegacyScriptPubKeyMan& EnsureLegacyScriptPubKeyMan(CWallet& wallet, bool also_cr
 
 UniValue getaddressinfo(const JSONRPCRequest& request);
 UniValue signrawtransactionwithwallet(const JSONRPCRequest& request);
-#endif //BITCOIN_WALLET_RPCWALLET_H
+#endif //BITNAMICOIN_WALLET_RPCWALLET_H

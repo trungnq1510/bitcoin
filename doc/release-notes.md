@@ -1,4 +1,4 @@
-*After branching off for a major version release of Bitcoin Core, use this
+*After branching off for a major version release of Bitnamicoin Core, use this
 template to create the initial release notes draft.*
 
 *The release notes draft is a temporary file that can be added to by anyone. See
@@ -8,39 +8,39 @@ for the process.*
 *Create the draft, named* "*version* Release Notes Draft"
 *(e.g. "0.20.0 Release Notes Draft"), as a collaborative wiki in:*
 
-https://github.com/bitcoin-core/bitcoin-devwiki/wiki/
+https://github.com/bitnamicoin-core/bitnamicoin-devwiki/wiki/
 
 *Before the final release, move the notes back to this git repository.*
 
 *version* Release Notes Draft
 ===============================
 
-Bitcoin Core version *version* is now available from:
+Bitnamicoin Core version *version* is now available from:
 
-  <https://bitcoincore.org/bin/bitcoin-core-*version*/>
+  <https://bitnamicoincore.org/bin/bitnamicoin-core-*version*/>
 
 This release includes new features, various bug fixes and performance
 improvements, as well as updated translations.
 
 Please report bugs using the issue tracker at GitHub:
 
-  <https://github.com/bitcoin/bitcoin/issues>
+  <https://github.com/bitnamicoin/bitnamicoin/issues>
 
 To receive security and update notifications, please subscribe to:
 
-  <https://bitcoincore.org/en/list/announcements/join/>
+  <https://bitnamicoincore.org/en/list/announcements/join/>
 
 How to Upgrade
 ==============
 
 If you are running an older version, shut it down. Wait until it has completely
 shut down (which might take a few minutes in some cases), then run the
-installer (on Windows) or just copy over `/Applications/Bitcoin-Qt` (on Mac)
-or `bitcoind`/`bitcoin-qt` (on Linux).
+installer (on Windows) or just copy over `/Applications/Bitnamicoin-Qt` (on Mac)
+or `bitnamicoind`/`bitnamicoin-qt` (on Linux).
 
-Upgrading directly from a version of Bitcoin Core that has reached its EOL is
+Upgrading directly from a version of Bitnamicoin Core that has reached its EOL is
 possible, but it might take some time if the data directory needs to be migrated. Old
-wallet versions of Bitcoin Core are generally supported.
+wallet versions of Bitnamicoin Core are generally supported.
 
 Compatibility
 ==============
@@ -50,14 +50,14 @@ compatible with C++17. The intention is to begin using C++17 features starting
 with the 0.22.0 release. This means that a compiler that supports C++17 will be
 required to compile 0.22.0.
 
-Bitcoin Core is supported and extensively tested on operating systems
-using the Linux kernel, macOS 10.12+, and Windows 7 and newer.  Bitcoin
+Bitnamicoin Core is supported and extensively tested on operating systems
+using the Linux kernel, macOS 10.12+, and Windows 7 and newer.  Bitnamicoin
 Core should also work on most other Unix-like systems but is not as
-frequently tested on them.  It is not recommended to use Bitcoin Core on
+frequently tested on them.  It is not recommended to use Bitnamicoin Core on
 unsupported systems.
 
-From Bitcoin Core 0.20.0 onwards, macOS versions earlier than 10.12 are no
-longer supported. Additionally, Bitcoin Core does not yet change appearance
+From Bitnamicoin Core 0.20.0 onwards, macOS versions earlier than 10.12 are no
+longer supported. Additionally, Bitnamicoin Core does not yet change appearance
 when macOS "dark mode" is activated.
 
 Notable changes
@@ -148,12 +148,12 @@ Changes to Wallet or GUI related settings can be found in the GUI or Wallet  sec
 Tools and Utilities
 -------------------
 
-- A new `bitcoin-cli -generate` command, equivalent to RPC `generatenewaddress`
+- A new `bitnamicoin-cli -generate` command, equivalent to RPC `generatenewaddress`
   followed by `generatetoaddress`, can generate blocks for command line testing
   purposes. This is a client-side version of the
   former `generate` RPC. See the help for details. (#19133)
 
-- The `bitcoin-cli -getinfo` command now displays the wallet name and balance for
+- The `bitnamicoin-cli -getinfo` command now displays the wallet name and balance for
   each of the loaded wallets when more than one is loaded (e.g. in multiwallet
   mode) and a wallet is not specified with `-rpcwallet`. (#18594)
 
@@ -180,14 +180,14 @@ Wallet
   empty. Previously it failed. (#17219)
 
 - The `-salvagewallet` startup option has been removed. A new `salvage` command
-  has been added to the `bitcoin-wallet` tool which performs the salvage
+  has been added to the `bitnamicoin-wallet` tool which performs the salvage
   operations that `-salvagewallet` did. (#18918)
 
 ### Experimental Descriptor Wallets
 
 Please note that Descriptor Wallets are still experimental and not all expected functionality
 is available. Additionally there may be some bugs and current functions may change in the future.
-Bugs and missing functionality can be reported to the [issue tracker](https://github.com/bitcoin/bitcoin/issues).
+Bugs and missing functionality can be reported to the [issue tracker](https://github.com/bitnamicoin/bitnamicoin/issues).
 
 0.21 introduces a new type of wallet - Descriptor Wallets. Descriptor Wallets store
 scriptPubKey information using descriptors. This is in contrast to the Legacy Wallet
@@ -198,9 +198,9 @@ of "mine" for scripts which is simpler and more intuitive than that used by Lega
 Descriptor Wallets also uses different semantics for watch-only things and imports.
 
 As Descriptor Wallets are a new type of wallet, their introduction does not affect existing wallets.
-Users who already have a Bitcoin Core wallet can continue to use it as they did before without
+Users who already have a Bitnamicoin Core wallet can continue to use it as they did before without
 any change in behavior. Newly created Legacy Wallets (which is the default type of wallet) will
-behave as they did in previous versions of Bitcoin Core.
+behave as they did in previous versions of Bitnamicoin Core.
 
 The differences between Descriptor Wallets and Legacy Wallets are largely limited to non user facing
 things. They are intended to behave similarly except for the import/export and watchonly functionality
@@ -216,7 +216,7 @@ In the GUI, a checkbox has been added to the Create Wallet Dialog to indicate th
 Descriptor Wallet should be created.
 
 Without those options being set, a Legacy Wallet will be created instead. Additionally the
-Default Wallet created upon first startup of Bitcoin Core will be a Legacy Wallet.
+Default Wallet created upon first startup of Bitnamicoin Core will be a Legacy Wallet.
 
 #### `IsMine` Semantics
 
@@ -297,7 +297,7 @@ descriptors with private keys for now as explained earlier.
 
 #### BIP 44/49/84 Support
 
-The change to using descriptors changes the default derivation paths used by Bitcoin Core
+The change to using descriptors changes the default derivation paths used by Bitnamicoin Core
 to adhere to BIP 44/49/84. Descriptors with different derivation paths can be imported without
 issue.
 
@@ -339,4 +339,4 @@ Thanks to everyone who directly contributed to this release:
 
 
 As well as to everyone that helped with translations on
-[Transifex](https://www.transifex.com/bitcoin/bitcoin/).
+[Transifex](https://www.transifex.com/bitnamicoin/bitnamicoin/).
